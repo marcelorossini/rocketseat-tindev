@@ -1,0 +1,68 @@
+.matchs {
+    list-style: none;
+    display: flex;
+}
+
+.matchs > li {
+    margin: 10px;
+    width: 100px;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #eee;    
+    text-align: center;
+    cursor: pointer;        
+}
+
+.matchs > li > a {
+    text-decoration: none;
+}
+
+.matchs > li > a > img {
+    width: 100%;
+}
+
+.matchs > li > a > strong {   
+    font-size: 12px;
+    color: #333;
+}
+
+hr {
+    border: 1px solid #cacaca;
+}
+
+.messages {
+    list-style: none;
+}
+
+.messages > li > a  {
+    display: grid;
+    grid-template-columns: 100px 1fr ;    
+    background: #fff;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    text-decoration: none;
+}
+
+.messages > li > a > img {
+    grid-column: 1;
+    width: 100%;
+}
+
+.messages > li > a > div {
+    padding: 10px;
+    text-align: left;
+}
+
+.messages > li > a > div > strong {
+    color: #333;
+    font-size: 20px;
+}
+
+.messages > li > a > div > p {
+    color: #999;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+}

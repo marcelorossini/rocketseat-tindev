@@ -1,16 +1,14 @@
 // React
 import React, { useEffect, useState } from 'react';
 // Services
-import api from '../services/api';
-import { Link } from 'react-router-dom';
+import api from '../../services/api';
 // Css
 import './Main.css';
 // Assets
-import logo from '../assets/logo.svg'
-import like from '../assets/like.svg'
-import dislike from '../assets/dislike.svg'
+import like from '../../assets/like.svg'
+import dislike from '../../assets/dislike.svg'
 
-export default function Main({ match }) {
+export default function Game(props) {
     // Lista de usuários
     const [users, setUsers] = useState([]);
     
@@ -20,21 +18,21 @@ export default function Main({ match }) {
         async function loadUsers() {
             const response = await api.get('/devs', {
                 headers: {
-                    user: match.params.id,
+                    user: props.id_user,
                 }
             })
             // Preenche a variável com a lista de usuários
             setUsers(response.data);
         }
         loadUsers();
-    }, [match.params.id]);
+    }, [props.id_user]);
 
     // Deslike
     async function handleDislike(id) {
         // Consome
         await api.post(`/devs/${id}/dislikes`, null, {
             headers: {
-                user: match.params.id
+                user: props.id_user
             }
         });
         // Altera lista de usuários, removendo o que recebeu o deslike
@@ -46,7 +44,7 @@ export default function Main({ match }) {
         // Consome
         await api.post(`/devs/${id}/likes`, null, {
             headers: {
-                user: match.params.id
+                user: props.id_user
             }
         });
         // Altera lista de usuários, removendo o que recebeu o like
@@ -54,19 +52,15 @@ export default function Main({ match }) {
     }  
 
     return (
-        <div className="main-container">
-            {/* Retorna para o login */}
-            <Link to="/">
-                <img src={logo} alt ="Tindev"/>
-            </Link>            
+        <div>
             {/* If ternario */}
             { users.length > 0 ? (
-                <ul>
+                <ul className="profiles">
                     {users.map(user => (                        
                         <li key={user._id}> {/* Necessário o atributo key para identificação pelo react */}
                             <img src={user.avatar} alt={user.name}/>
                             <footer>
-                                <strong>{user.name || user.login}</strong>
+                                <strong>{user.name || user.user}</strong>
                                 <p>{user.bio}</p>
                             </footer>
         

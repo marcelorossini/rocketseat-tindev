@@ -20,7 +20,7 @@ export default function Login({ history }) {
         
         const { _id } = response.data;
 
-        history.push(`/main/${_id}`);
+        history.push(`/dev/${_id}`);
     }    
 
     // Retorna componente
